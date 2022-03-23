@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  users: string[] = []
 
   constructor() { }
 
@@ -14,6 +15,7 @@ export class UsersComponent implements OnInit {
       .then(response => response.json())
       .then(json => {
         console.log(json)
+        this.users = json
       })
   }
 
