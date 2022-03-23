@@ -7,10 +7,11 @@ import { PostComponent } from './post/post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule } from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -25,8 +26,9 @@ import {MatInputModule} from '@angular/material/input';
     StoreModule.forRoot({}, {}),
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatExpansionModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
