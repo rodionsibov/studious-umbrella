@@ -1,4 +1,5 @@
 # UsersAndPostsApp
+[![Netlify Status](https://api.netlify.com/api/v1/badges/be77e376-2cf0-44c8-bd21-cb77703b059c/deploy-status)](https://app.netlify.com/sites/phenomenal-jalebi-513c89/deploys)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
