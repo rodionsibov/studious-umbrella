@@ -2,7 +2,7 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
 </mat-form-field>
-<!-- 
+
 <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -37,9 +37,9 @@
     <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
     </tr>
-</table> -->
+</table>
 
-<button mat-button (click)="openDialog()">Launch dialog</button>
+<button mat-raised-button (click)="openDialog()">Launch dialog</button>
 
 
 <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
