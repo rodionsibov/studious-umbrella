@@ -7,6 +7,20 @@
 - Reactive Forms, Validators, LifeHooks
 - for communication with the given Rest API you must use HttpClient
 
+## Angular & Typescript
+- [x] Creating modules and components in Angular
+- [x] Rendering data
+- [x] Properties and event binding
+- [x] Styling components
+- [x] Parent child component communication
+- [x] Type definitions with Typescript interfaces
+- [x] Fetching data with HTTP Client
+- [x] Sharing data between components
+- [x] RxJS streams
+- [x] Routing and navigation
+
+
+
 ## Task materials: 
 You're going to use the free public API JSONPlaceholder - `https://jsonplaceholder.typicode.com/` and the idea is to use two of api's resources: `users` and `posts`.
 
@@ -53,17 +67,3 @@ https://jsonplaceholder.typicode.com/users
 
 
 1. *Bonus requirements:* Show a loader while loading response, show notification on edit or getting user's posts
-
-
-
-
-
-
-
-
-
-
-
-
-
-
