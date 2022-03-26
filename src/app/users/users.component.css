@@ -1,11 +1,3 @@
-:host {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 table {
     width: 100%;
   }
@@ -16,10 +8,12 @@ table {
   
   tr.example-element-row:not(.example-expanded-row):hover {
     background: whitesmoke;
+    opacity: 0.4;
   }
   
   tr.example-element-row:not(.example-expanded-row):active {
     background: #efefef;
+    opacity: 0.4;
   }
   
   .example-element-row td {
