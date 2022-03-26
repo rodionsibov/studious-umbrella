@@ -8,12 +8,11 @@ table {
   
   tr.example-element-row:not(.example-expanded-row):hover {
     background: whitesmoke;
-    opacity: 0.4;
+    opacity: 0.1;
   }
   
   tr.example-element-row:not(.example-expanded-row):active {
     background: #efefef;
-    opacity: 0.4;
   }
   
   .example-element-row td {
@@ -47,4 +46,5 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
+
   
