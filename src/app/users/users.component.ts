@@ -4,6 +4,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { PostComponent } from '../post/post.component';
 
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -20,7 +28,7 @@ export class UsersComponent implements OnInit {
   users: string[] = []
   isLoadingResults = false;
 
-  ELEMENT_DATA: any[] = [
+  ELEMENT_DATA: PeriodicElement[] = [
     {
       position: 1,
       name: 'Hydrogen',
@@ -113,7 +121,7 @@ export class UsersComponent implements OnInit {
 
   dataSource = new MatTableDataSource(this.ELEMENT_DATA);
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
-  expandedElement: any | null;
+  expandedElement: PeriodicElement | null | undefined;
 
   constructor(public dialog: MatDialog) { }
 
