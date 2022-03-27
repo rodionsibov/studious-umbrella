@@ -20,7 +20,36 @@
 - [x] Routing and navigation
 
 ## Angular Material UI
-- [] 
+- [x] Material Module
+- [] Typography
+- [] Button
+- [] Button Toggle
+- [] Icons
+- [] Badges
+- [] Progress Spinner
+- [] Navbar
+- [] Sidenav
+- [] Menu
+- [] List
+- [] Grid List
+- [] Expansion Panel
+- [] Cards
+- [] Tabs
+- [] Stepper
+- [] Input
+- [] Select
+- [] Autocomplete
+- [] Checkbox and Radio Button
+- [] Date Picker
+- [] Tooltip
+- [] Snackbar
+- [] Dialog
+- [] Data table
+- [] Exploring Data table
+- [] Data table Filtering
+- [] Data table Sorting
+- [] Data table Pagination
+- [] Virtual Scrolling 
 
 
 ## Task materials: 
