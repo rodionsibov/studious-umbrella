@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog } from '@angular/material/dialog';
-import { PostComponent } from '../post/post.component';
 
 export interface PeriodicElement {
   name: string;
@@ -123,7 +121,7 @@ export class UsersComponent implements OnInit {
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement | null | undefined;
 
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {
 
@@ -136,9 +134,7 @@ export class UsersComponent implements OnInit {
 
   }
 
-  openDialog() {
-    this.dialog.open(PostComponent);
-  }
+
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
