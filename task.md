@@ -21,13 +21,13 @@
 
 ## Angular Material UI
 - [x] Material Module
-- [] Typography
-- [] Button
-- [] Button Toggle
-- [] Icons
-- [] Badges
-- [] Progress Spinner
-- [] Navbar
+- [x] Typography
+- [x] Button
+- [x] Button Toggle
+- [x] Icons
+- [x] Badges
+- [x] Progress Spinner
+- [x] Navbar
 - [] Sidenav
 - [] Menu
 - [] List
