@@ -126,12 +126,16 @@ export class UsersComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-
+    // this.isLoadingResults = true;
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(json => {
         console.log(json)
         this.users = json
+        // setTimeout(() => {
+        //   this.isLoadingResults = false;
+        // }, 5000)
+
       })
 
 

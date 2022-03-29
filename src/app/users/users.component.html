@@ -1,5 +1,5 @@
 <div class="row">
-    <mat-form-field appearance="standard">
+    <mat-form-field appearance="standard" class="w-50 mx-auto">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
     </mat-form-field>
@@ -11,7 +11,7 @@
             </button>
             <div>
                 <app-user></app-user>
-                <app-post></app-post>
+                <!-- <app-post></app-post> -->
             </div>
 
         </div>
@@ -46,7 +46,9 @@
         </tr>
     </table> -->
 
-
+    <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell">No data matching the filter "{{input.value}}"</td>
+    </tr>
 
 
     <div class="spinner" *ngIf="isLoadingResults">
