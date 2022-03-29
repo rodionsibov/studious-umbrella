@@ -1,8 +1,10 @@
-<div class="row">
-    <mat-form-field appearance="standard" class="w-50 mx-auto">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-    </mat-form-field>
+<div class="container">
+    <div class="row">
+        <mat-form-field appearance="standard" class="col-md-8 mx-auto">
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+        </mat-form-field>
+    </div>
 
     <div class="overflow-auto">
         <div class="d-flex gap-2" *ngFor="let user of users">
