@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserComponent } from '../user/user.component';
+import { MatDialog } from '@angular/material/dialog';
 
 export interface PeriodicElement {
   name: string;
@@ -121,24 +123,27 @@ export class UsersComponent implements OnInit {
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement | null | undefined;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     console.log(json)
-    //   })
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => {
+        console.log(json)
+        this.users = json
+      })
 
 
   }
 
-
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog() {
+    this.dialog.open(UserComponent);
   }
 
 }
