@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserComponent } from '../user/user.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,12 +26,15 @@ export interface PeriodicElement {
     trigger('detailExpand', [
       state('collapsed', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
     ]),
   ],
 })
 export class UsersComponent implements OnInit {
-  users: string[] = []
+  users: string[] = [];
   isLoadingResults = false;
 
   ELEMENT_DATA: PeriodicElement[] = [
@@ -123,22 +132,19 @@ export class UsersComponent implements OnInit {
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   expandedElement: PeriodicElement | null | undefined;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.isLoadingResults = true;
     fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(json => {
-        console.log(json)
-        this.users = json
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json);
+        this.users = json;
         setTimeout(() => {
           this.isLoadingResults = false;
-        }, 5000)
-
-      })
-
-
+        }, 5000);
+      });
   }
 
   applyFilter(event: Event) {
@@ -149,5 +155,4 @@ export class UsersComponent implements OnInit {
   openDialog() {
     this.dialog.open(UserComponent);
   }
-
 }

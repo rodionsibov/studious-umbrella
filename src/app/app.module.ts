@@ -11,21 +11,15 @@ import { StoreModule } from '@ngrx/store';
 import { MaterialModule } from './material/material.module';
 import { UserComponent } from './user/user.component';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    UsersComponent,
-    PostComponent,
-    UserComponent
-  ],
+  declarations: [AppComponent, UsersComponent, PostComponent, UserComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}, {}),
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
