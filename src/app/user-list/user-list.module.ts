@@ -17,7 +17,7 @@ const UserListComponents = [
 @NgModule({
   declarations: [UserListComponents],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
-  exports: [UserListComponents],
+  exports: [UserListComponents, MaterialModule],
   providers: [UserListService]
 })
 export class UserListModule {}

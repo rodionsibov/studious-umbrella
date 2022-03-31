@@ -10,23 +10,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface User {
-  id: string;
-  username: string;
-  email: string;
-  name: string;
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-  };
-  catchPhrase: string;
-}
+import { User } from '../../types/user';
 
 @Component({
   selector: 'app-table',
@@ -45,13 +29,44 @@ export interface User {
 })
 export class TableComponent implements OnInit {
   dataSource: any = [];
-  isLoadingResults = false;
+  isLoadingResults: boolean = false;
   expandedElement: User | null | undefined;
+  posts: any = []
 
   columns = [
     {
+      columnDef: 'suite',
+      header: 'Suite',
+      cell: (element: User) => `${element.address.suite}`,
+    },
+    {
+      columnDef: 'city',
+      header: 'City',
+      cell: (element: User) => `${element.address.city}`,
+    },
+    {
+      columnDef: 'street',
+      header: 'Street',
+      cell: (element: User) => `${element.address.street}`,
+    },
+    {
+      columnDef: 'zipcode',
+      header: 'Zipcode',
+      cell: (element: User) => `${element.address.zipcode}`,
+    },
+    {
+      columnDef: 'companyNama',
+      header: 'Company Name',
+      cell: (element: User) => `${element.company.name}`,
+    },
+    {
+      columnDef: 'catchPhrase',
+      header: 'Company Catchphrase',
+      cell: (element: User) => `${element.company.catchPhrase}`,
+    },
+    {
       columnDef: 'email',
-      header: 'No.',
+      header: 'Email',
       cell: (element: User) => `${element.email}`,
     },
     {
@@ -60,14 +75,19 @@ export class TableComponent implements OnInit {
       cell: (element: User) => `${element.name}`,
     },
     {
-      columnDef: 'symbol',
-      header: 'Symbol',
+      columnDef: 'phone',
+      header: 'Phone',
       cell: (element: User) => `${element.phone}`,
     },
     {
-      columnDef: 'companyName',
-      header: 'Symbol',
-      cell: (element: User) => `${element.company.name}`,
+      columnDef: 'username',
+      header: 'Username',
+      cell: (element: User) => `${element.username}`,
+    },
+    {
+      columnDef: 'website',
+      header: 'Website',
+      cell: (element: User) => `${element.website}`,
     },
   ];
 
@@ -87,7 +107,7 @@ export class TableComponent implements OnInit {
     this.isLoadingResults = true;
     this.userListService.getUsers().subscribe((users: any) => {
       this.dataSource = new MatTableDataSource(users);
-      console.log('UsersListService:', users);
+      console.log('UsersListService -> Users:', users);
       this.isLoadingResults = false;
     });
   }
@@ -115,6 +135,15 @@ export class TableComponent implements OnInit {
     this.userListService.addUser().subscribe((newUser) => {
       console.log(newUser);
       this.dataSource.push(newUser);
+    });
+  }
+
+  getPosts(userId: number): void {
+    this.isLoadingResults = true;
+    this.userListService.getPosts(userId).subscribe((posts: any) => {
+      this.posts = posts
+      console.log('UsersListService -> Posts:', posts);
+      this.isLoadingResults = false;
     });
   }
 

@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, map } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Post } from '../types/post';
+import { User } from '../types/user';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +11,12 @@ import { environment } from 'src/environments/environment';
 export class UserListService {
   constructor(private http: HttpClient) {}
 
-  getUsers() {
+  getUsers(): Observable<User> {
     const url = `${environment.apiUrl}/users`;
-    return this.http.get(url).pipe(
+    return this.http.get<User>(url).pipe(
       // delay(2000),
-      map((response: any) => {
-        return response
-       
+      map((response: User) => {
+        return response;
       })
     );
   }
@@ -27,5 +28,15 @@ export class UserListService {
   addUser() {
     const user = {};
     return this.http.post(`${environment.apiUrl}/users`, user);
+  }
+
+  getPosts(userId: number): Observable<Post> {
+    const url = `${environment.apiUrl}/posts?userId=${userId}`;
+    return this.http.get<Post>(url).pipe(
+      // delay(2000),
+      map((response: Post) => {
+        return response;
+      })
+    );
   }
 }
