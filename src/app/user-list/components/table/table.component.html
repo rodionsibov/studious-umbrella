@@ -42,14 +42,14 @@
             "
           >
             <div class="d-flex flex-column">
-              <div class="p-3 row" *ngFor="let post of posts">
+              <div class="p-3 row" *ngFor="let post of posts; let i = index">
                 <h4 class="mb-3">
                   {{ post.title | titlecase }}
                 </h4>
                 <p>
                   {{ post.body }}
                 </p>
-                <mat-divider></mat-divider>
+                <mat-divider *ngIf="i !== posts.length - 1"></mat-divider>
               </div>
             </div>
           </div>
