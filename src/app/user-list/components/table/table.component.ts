@@ -11,12 +11,21 @@ import {
 } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface PeriodicElement {
+export interface User {
+  id: string;
+  username: string;
+  email: string;
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+  };
+  catchPhrase: string;
 }
 
 @Component({
@@ -37,20 +46,32 @@ export interface PeriodicElement {
 export class TableComponent implements OnInit {
   dataSource: any = [];
   isLoadingResults = false;
-  columnsToDisplay = [
-    'username',
-    'email',
-    'name',
-    'street',
-    'suite',
-    'city',
-    'zipcode',
-    'phone',
-    'website',
-    'companyName',
-    'catchPhrase',
+  expandedElement: User | null | undefined;
+
+  columns = [
+    {
+      columnDef: 'email',
+      header: 'No.',
+      cell: (element: User) => `${element.email}`,
+    },
+    {
+      columnDef: 'name',
+      header: 'Name',
+      cell: (element: User) => `${element.name}`,
+    },
+    {
+      columnDef: 'symbol',
+      header: 'Symbol',
+      cell: (element: User) => `${element.phone}`,
+    },
+    {
+      columnDef: 'companyName',
+      header: 'Symbol',
+      cell: (element: User) => `${element.company.name}`,
+    },
   ];
-  expandedElement!: PeriodicElement | null;
+
+  displayedColumns = this.columns.map((c) => c.columnDef);
 
   constructor(
     public dialog: MatDialog,
