@@ -6,14 +6,14 @@
         </mat-form-field>
     </div>
 
-    <div class="overflow-auto">
+    <div class="row overflow-auto">
         <div class="d-flex gap-2" *ngFor="let user of users">
             <button mat-mini-fab (click)="openDialog()" class="mt-2">
                 <mat-icon>edit</mat-icon>
             </button>
             <div>
                 <app-user></app-user>
-                <!-- <app-post></app-post> -->
+                <app-post></app-post>
             </div>
 
         </div>

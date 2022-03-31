@@ -5,8 +5,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatIconModule} from '@angular/material/icon';
-
+import { MatIconModule } from '@angular/material/icon';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -14,11 +13,11 @@ const MaterialComponents = [
   MatInputModule,
   MatTableModule,
   MatDialogModule,
-  MatIconModule
-]
+  MatIconModule,
+];
 
 @NgModule({
   imports: [MaterialComponents],
-  exports: [MaterialComponents]
+  exports: [MaterialComponents],
 })
-export class MaterialModule { }
+export class MaterialModule {}
