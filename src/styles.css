@@ -4,13 +4,14 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 body {
-  background-color: #222;
+  background-color: #333;
 }
 
 .spinner {
