@@ -101,14 +101,14 @@ export class TableComponent implements OnInit {
   getUsers() {
     this.isLoadingResults = true;
     this.userListService.getUsers().subscribe((users: User[]) => {
-      // this.dataSource = new MatTableDataSource(users);
-      this.dataSource = users;
+      this.dataSource = new MatTableDataSource(users);
       console.log('UsersListService -> Users:', users);
       this.isLoadingResults = false;
     });
   }
 
   removeUser(id: any) {
+    this.isLoadingResults = true;
     console.log('removeUser', id);
     if (confirm('Are you sure, you want to remove this user?')) {
       this.userListService.removeUser(id).subscribe(() => {
@@ -122,13 +122,14 @@ export class TableComponent implements OnInit {
           (user: User) => user.id !== id
         );
         console.log(this.dataSource);
+        // this.getUsers()
+        this.isLoadingResults = false;
       });
     }
   }
 
   addUser() {
     console.log('addUser');
-
     const uniqueId = Math.random().toString(16).slice(2);
     const newUser = {
       user: {
@@ -151,18 +152,7 @@ export class TableComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value
-      .trim()
-      .toLowerCase();
-    // this.dataSource.filter = filterValue.t.rim().toLowerCase();
-    if (filterValue) {
-      this.dataSource = this.dataSource.filter(
-        (user: User) =>
-          user.name.includes(filterValue) || user.email.includes(filterValue)
-      );
-      console.log(this.dataSource);
-    } else {
-      
-    }
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
