@@ -1,0 +1,19 @@
+<div class="d-flex flex-column">
+  <div class="p-3 d-flex gap-3">
+    <button mat-raised-button color="accent" (click)="openDialog()">
+      Edit User
+    </button>
+    <button mat-raised-button color="warn" (click)="removeUser(postId)">Remove User</button>
+  </div>
+  <div class="p-3 row" *ngFor="let post of posts; let i = index">
+    <div class="col-6">
+      <h4 class="mb-3">
+        {{ post.title | titlecase }}
+      </h4>
+      <p>
+        {{ post.body }}
+      </p>
+    </div>
+    <mat-divider *ngIf="i !== posts.length - 1"></mat-divider>
+  </div>
+</div>
