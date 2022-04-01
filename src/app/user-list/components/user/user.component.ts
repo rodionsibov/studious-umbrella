@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserListService } from '../../services/user-list.service';
 import { User } from '../../types/user';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user',
@@ -10,96 +11,38 @@ import { User } from '../../types/user';
 })
 export class UserComponent implements OnInit {
   form!: FormGroup;
-  dataSource: User[] = [];
-  columns = [
-    // {
-    //   columnDef: 'id',
-    //   header: 'Id',
-    //   cell: (element: User) => `${element.id}`,
-    // },
-    {
-      columnDef: 'name',
-      header: 'Name',
-      cell: (element: User) => `${element.name}`,
-    },
-    {
-      columnDef: 'phone',
-      header: 'Phone',
-      cell: (element: User) => `${element.phone}`,
-    },
-    {
-      columnDef: 'username',
-      header: 'Username',
-      cell: (element: User) => `${element.username}`,
-    },
-    {
-      columnDef: 'email',
-      header: 'Email',
-      cell: (element: User) => `${element.email}`,
-    },
-    {
-      columnDef: 'website',
-      header: 'Website',
-      cell: (element: User) => `${element.website}`,
-    },
-    {
-      columnDef: 'suite',
-      header: 'Suite',
-      cell: (element: User) => `${element.address.suite}`,
-    },
-    {
-      columnDef: 'city',
-      header: 'City',
-      cell: (element: User) => `${element.address.city}`,
-    },
-    {
-      columnDef: 'street',
-      header: 'Street',
-      cell: (element: User) => `${element.address.street}`,
-    },
-    {
-      columnDef: 'zipcode',
-      header: 'Zipcode',
-      cell: (element: User) => `${element.address.zipcode}`,
-    },
-    {
-      columnDef: 'companyName',
-      header: 'Company Name',
-      cell: (element: User) => `${element.company.name}`,
-    },
-    {
-      columnDef: 'catchPhrase',
-      header: 'Company Catchphrase',
-      cell: (element: User) => `${element.company.catchPhrase}`,
-    },
-  ];
+  user!: User;
 
   constructor(
     private fb: FormBuilder,
-    private userListService: UserListService
-  ) {}
+    private userListService: UserListService,
+    @Inject(MAT_DIALOG_DATA) data: { user: User }
+  ) {
+    this.user = data.user;
+  }
 
   ngOnInit(): void {
     this.initializeForm();
-    // this.userListService.getUsers().subscribe((users: User[]) => {
-    //   this.dataSource = users;
-    //   console.log('UsersListService -> User:', users);
-    // });
   }
 
   initializeForm() {
     this.form = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required, Validators.email],
-      name: ['', Validators.required],
-      street: ['', Validators.required],
-      suite: ['', Validators.required],
-      city: ['', Validators.required],
-      phone: ['', Validators.required],
-      zipcode: ['', Validators.required],
-      website: ['', Validators.required],
-      catchPhrase: ['', Validators.required],
-      companyName: ['', Validators.required],
+      id: [this.user.id, Validators.required],
+      address: this.fb.group({
+        suite: [this.user.address.suite, Validators.required],
+        city: [this.user.address.city, Validators.required],
+        street: [this.user.address.street, Validators.required],
+        zipcode: [this.user.address.zipcode, Validators.required],
+      }),
+      company: this.fb.group({
+        name: [this.user.company.name, Validators.required],
+        catchPhrase: [this.user.company.catchPhrase, Validators.required],
+      }),
+      email: [this.user.email, Validators.required],
+      name: [this.user.name, Validators.required],
+      phone: [this.user.phone, Validators.required],
+      username: [this.user.username, Validators.required],
+      website: [this.user.website, Validators.required],
     });
   }
 

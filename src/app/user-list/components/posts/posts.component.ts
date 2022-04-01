@@ -10,20 +10,22 @@ import { UserComponent } from '../user/user.component';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  @Input() posts!: Post[];
-  @Input() userId!: User;
-  @Output() onRemoveUser = new EventEmitter<string>();
+  @Input() posts: Post[];
+  @Input() user!: User;
+  @Output() onRemoveUser = new EventEmitter<number>();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+    this.posts = [];
+  }
   ngOnInit(): void {}
 
   openDialog() {
-    this.dialog.open(UserComponent);
-    console.log(this.userId);
-    
+    const dialogRef = this.dialog.open(UserComponent, {
+      data: { user: this.user },
+    });
   }
 
-  removeUser(userId: any) {
+  removeUser(userId: number) {
     this.onRemoveUser.emit(userId);
   }
 }

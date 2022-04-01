@@ -12,7 +12,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../types/user';
 import { MatDialog } from '@angular/material/dialog';
 
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
@@ -99,7 +98,11 @@ export class TableComponent implements OnInit {
 
   displayedColumns: string[] = this.columns.map((c) => c.columnDef);
 
-  constructor(private store: Store, private userListService: UserListService, public dialog: MatDialog) {}
+  constructor(
+    private store: Store,
+    private userListService: UserListService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -118,33 +121,18 @@ export class TableComponent implements OnInit {
     this.isLoadingResults = true;
     console.log('removeUser', id);
 
-    if (confirm('Are you sure, you want to remove this user?')) {
+    if (confirm('Are you sure you want to remove this user?')) {
       this.userListService.removeUser(id).subscribe(() => {
         console.log('delete from backend');
         this.dataSource._data._value = this.dataSource._data._value.filter(
           (user: any) => user.id !== id
         );
         this.dataSource._updateChangeSubscription();
-        this.isLoadingResults = false; 
-        // this.getUsers()
-      })
+        this.isLoadingResults = false;
+      });
     } else {
-      this.isLoadingResults = false; 
+      this.isLoadingResults = false;
     }
-  }
-
-  addUser() {
-    console.log('addUser');
-    const uniqueId = Math.random().toString(16).slice(2);
-    const newUser = {
-      user: {
-        id: uniqueId,
-      },
-    };
-    this.userListService.addUser().subscribe((newUser) => {
-      console.log(newUser);
-      this.dataSource.push(newUser);
-    });
   }
 
   getPosts(userId: number): void {

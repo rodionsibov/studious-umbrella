@@ -1,18 +1,22 @@
 export interface User {
   id: number;
-  address: {
-    suite: string;
-    city: string;
-    street: string;
-    zipcode: string;
-  };
-  company: {
-    name: string;
-    catchPhrase: string;
-  };
+  address: Address;
+  company: Company;
   email: string;
   name: string;
   phone: string;
   username: string;
   website: string;
+}
+
+export interface Address {
+  suite: string;
+  city: string;
+  street: string;
+  zipcode: string;
+}
+
+export interface Company {
+  name: string;
+  catchPhrase: string;
 }

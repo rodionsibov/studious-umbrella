@@ -1,10 +1,54 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
   <h1 mat-dialog-title>Edit User</h1>
   <div mat-dialog-content>
-    <fieldset class="d-flex gap-2 overflow-auto">
-      <mat-form-field appearance="fill" *ngFor="let field of columns">
-        <mat-label>{{ field.header }}</mat-label>
-        <input matInput [formControlName]="field.columnDef" />
+    <fieldset class="d-flex flex-wrap gap-2 overflow-auto">
+      <mat-form-field appearance="fill">
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" formGroupName="address">
+        <mat-label>Suite</mat-label>
+        <input matInput formControlName="suite" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" formGroupName="address">
+        <mat-label>City</mat-label>
+        <input matInput formControlName="city" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" formGroupName="address">
+        <mat-label>Street</mat-label>
+        <input matInput formControlName="street" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" formGroupName="address">
+        <mat-label>Zipcode</mat-label>
+        <input matInput formControlName="zipcode" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" formGroupName="company">
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" formGroupName="company">
+        <mat-label>Company Catchphrase</mat-label>
+        <input matInput formControlName="catchPhrase" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Website</mat-label>
+        <input matInput formControlName="website" />
       </mat-form-field>
     </fieldset>
   </div>
