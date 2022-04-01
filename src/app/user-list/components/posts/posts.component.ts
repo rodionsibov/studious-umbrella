@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Post } from '../../types/post';
+import { User } from '../../types/user';
 import { UserComponent } from '../user/user.component';
 
 @Component({
@@ -10,17 +11,19 @@ import { UserComponent } from '../user/user.component';
 })
 export class PostsComponent implements OnInit {
   @Input() posts!: Post[];
-  @Input() postId!: Post;
+  @Input() userId!: User;
   @Output() onRemoveUser = new EventEmitter<string>();
 
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {}
 
-  openDialog(postId: any) {
+  openDialog() {
     this.dialog.open(UserComponent);
+    console.log(this.userId);
+    
   }
 
-  removeUser(postId: any) {
-    this.onRemoveUser.emit(postId);
+  removeUser(userId: any) {
+    this.onRemoveUser.emit(userId);
   }
 }

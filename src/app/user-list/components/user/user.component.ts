@@ -104,6 +104,6 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('submit', this.form.value, this.form.valid);
+    console.log('Submit', this.form.value, this.form.valid);
   }
 }
