@@ -14,7 +14,7 @@ export class UserListService {
   getUsers(): Observable<User> {
     const url = `${environment.apiUrl}/users`;
     return this.http.get<User>(url).pipe(
-      // delay(2000),
+      delay(1000),
       map((response: User) => {
         return response;
       })
@@ -33,7 +33,7 @@ export class UserListService {
   getPosts(userId: number): Observable<Post> {
     const url = `${environment.apiUrl}/posts?userId=${userId}`;
     return this.http.get<Post>(url).pipe(
-      // delay(2000),
+      // delay(1000),
       map((response: Post) => {
         return response;
       })

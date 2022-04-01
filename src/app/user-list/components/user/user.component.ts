@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { UserListService } from '../../services/user-list.service';
 
 @Component({
@@ -11,6 +10,9 @@ import { UserListService } from '../../services/user-list.service';
 export class UserComponent implements OnInit {
   form!: FormGroup;
   dataSource: any = [];
+  inputList: string[] = [
+    'suite'
+  ]
 
   constructor(
     private fb: FormBuilder,
@@ -20,8 +22,8 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.userListService.getUsers().subscribe((users: any) => {
-      this.dataSource = users
-      console.log('UsersListService:', users);  
+      this.dataSource = users;
+      console.log('UsersListService -> User:', users);
     });
   }
 

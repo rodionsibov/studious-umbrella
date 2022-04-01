@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { UserListService } from '../../services/user-list.service';
 import {
@@ -35,6 +34,31 @@ export class TableComponent implements OnInit {
 
   columns = [
     {
+      columnDef: 'name',
+      header: 'Name',
+      cell: (element: User) => `${element.name}`,
+    },
+    {
+      columnDef: 'phone',
+      header: 'Phone',
+      cell: (element: User) => `${element.phone}`,
+    },
+    {
+      columnDef: 'username',
+      header: 'Username',
+      cell: (element: User) => `${element.username}`,
+    },
+    {
+      columnDef: 'email',
+      header: 'Email',
+      cell: (element: User) => `${element.email}`,
+    },
+    {
+      columnDef: 'website',
+      header: 'Website',
+      cell: (element: User) => `${element.website}`,
+    },
+    {
       columnDef: 'suite',
       header: 'Suite',
       cell: (element: User) => `${element.address.suite}`,
@@ -64,37 +88,11 @@ export class TableComponent implements OnInit {
       header: 'Company Catchphrase',
       cell: (element: User) => `${element.company.catchPhrase}`,
     },
-    {
-      columnDef: 'email',
-      header: 'Email',
-      cell: (element: User) => `${element.email}`,
-    },
-    {
-      columnDef: 'name',
-      header: 'Name',
-      cell: (element: User) => `${element.name}`,
-    },
-    {
-      columnDef: 'phone',
-      header: 'Phone',
-      cell: (element: User) => `${element.phone}`,
-    },
-    {
-      columnDef: 'username',
-      header: 'Username',
-      cell: (element: User) => `${element.username}`,
-    },
-    {
-      columnDef: 'website',
-      header: 'Website',
-      cell: (element: User) => `${element.website}`,
-    },
   ];
 
   displayedColumns = this.columns.map((c) => c.columnDef);
 
   constructor(
-    public dialog: MatDialog,
     private store: Store,
     private userListService: UserListService
   ) {}
@@ -152,8 +150,5 @@ export class TableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  openDialog() {
-    // this.dialog.open(UserComponent);
-    console.log('open dialog');
-  }
+  
 }

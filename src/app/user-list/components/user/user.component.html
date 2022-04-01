@@ -1,23 +1,8 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="w-100">
-  <div class="d-flex gap-2">
-
-    <fieldset [disabled]="false" class="d-flex gap-2 overflow-auto" >
-        <mat-form-field appearance="fill" *ngFor="let item of dataSource">
-          <input matInput formControlName="item.name" />
-        </mat-form-field>
-    </fieldset>
-
-    <div class="d-flex gap-2">
-      <button mat-mini-fab class="mt-2">
-        <mat-icon>add</mat-icon>
-      </button>
-      <button mat-mini-fab class="mt-2">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-mini-fab class="mt-2">
-        <mat-icon>remove</mat-icon>
-      </button>
-    </div>
-
-  </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <fieldset class="d-flex gap-2 overflow-auto">
+    <mat-form-field appearance="fill">
+      <mat-label>Input</mat-label>
+      <input matInput formControlName="input" />
+    </mat-form-field>
+  </fieldset>
 </form>
