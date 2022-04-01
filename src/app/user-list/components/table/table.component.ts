@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserListService } from '../../services/user-list.service';
 import {
@@ -30,7 +30,7 @@ export class TableComponent implements OnInit {
   dataSource: any = [];
   isLoadingResults: boolean = false;
   expandedElement: User | null | undefined;
-  posts: any = []
+  posts: any = [];
 
   columns = [
     {
@@ -92,10 +92,7 @@ export class TableComponent implements OnInit {
 
   displayedColumns = this.columns.map((c) => c.columnDef);
 
-  constructor(
-    private store: Store,
-    private userListService: UserListService
-  ) {}
+  constructor(private store: Store, private userListService: UserListService) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -103,8 +100,9 @@ export class TableComponent implements OnInit {
 
   getUsers() {
     this.isLoadingResults = true;
-    this.userListService.getUsers().subscribe((users: any) => {
-      this.dataSource = new MatTableDataSource(users);
+    this.userListService.getUsers().subscribe((users: User[]) => {
+      // this.dataSource = new MatTableDataSource(users);
+      this.dataSource = users;
       console.log('UsersListService -> Users:', users);
       this.isLoadingResults = false;
     });
@@ -112,10 +110,17 @@ export class TableComponent implements OnInit {
 
   removeUser(id: any) {
     console.log('removeUser', id);
-    if (confirm('Are you sure, you want to delete this user?')) {
+    if (confirm('Are you sure, you want to remove this user?')) {
       this.userListService.removeUser(id).subscribe(() => {
         console.log('delete from backend');
-        this.dataSource = this.dataSource.filter((user: any) => user.id !== id);
+
+        // console.log(this.dataSource);
+        // this.dataSource._data._value = this.dataSource._data._value.filter(
+        //   (user: any) => user.id !== id
+        // );
+        this.dataSource = this.dataSource.filter(
+          (user: User) => user.id !== id
+        );
         console.log(this.dataSource);
       });
     }
@@ -139,16 +144,25 @@ export class TableComponent implements OnInit {
   getPosts(userId: number): void {
     this.isLoadingResults = true;
     this.userListService.getPosts(userId).subscribe((posts: any) => {
-      this.posts = posts
+      this.posts = posts;
       console.log('UsersListService -> Posts:', posts);
       this.isLoadingResults = false;
     });
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value
+      .trim()
+      .toLowerCase();
+    // this.dataSource.filter = filterValue.t.rim().toLowerCase();
+    if (filterValue) {
+      this.dataSource = this.dataSource.filter(
+        (user: User) =>
+          user.name.includes(filterValue) || user.email.includes(filterValue)
+      );
+      console.log(this.dataSource);
+    } else {
+      
+    }
   }
-
-  
 }

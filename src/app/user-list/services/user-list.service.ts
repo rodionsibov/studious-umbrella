@@ -11,11 +11,11 @@ import { User } from '../types/user';
 export class UserListService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User> {
+  getUsers(): Observable<User[]> {
     const url = `${environment.apiUrl}/users`;
-    return this.http.get<User>(url).pipe(
+    return this.http.get<User[]>(url).pipe(
       delay(1000),
-      map((response: User) => {
+      map((response: User[]) => {
         return response;
       })
     );
