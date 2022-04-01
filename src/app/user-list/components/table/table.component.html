@@ -10,7 +10,7 @@
       />
     </mat-form-field>
   </div>
-  <div class="overflow-auto mat-elevation-z8" style="height: 400px;">
+  <div *ngIf="dataSource" class="overflow-auto" style="height: 400px">
     <table
       multiTemplateDataRows
       mat-table

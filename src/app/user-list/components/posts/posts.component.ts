@@ -16,7 +16,7 @@ export class PostsComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
   ngOnInit(): void {}
 
-  openDialog() {
+  openDialog(postId: any) {
     this.dialog.open(UserComponent);
   }
 

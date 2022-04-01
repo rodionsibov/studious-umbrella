@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserListService } from '../../services/user-list.service';
 import {
@@ -86,7 +86,7 @@ export class TableComponent implements OnInit {
       cell: (element: User) => `${element.address.zipcode}`,
     },
     {
-      columnDef: 'companyNama',
+      columnDef: 'companyName',
       header: 'Company Name',
       cell: (element: User) => `${element.company.name}`,
     },
@@ -117,7 +117,6 @@ export class TableComponent implements OnInit {
   removeUser(id: any) {
     this.isLoadingResults = true;
     console.log('removeUser', id);
-    // this.dialog.open(UserComponent);
 
     if (confirm('Are you sure, you want to remove this user?')) {
       this.userListService.removeUser(id).subscribe(() => {
@@ -127,7 +126,10 @@ export class TableComponent implements OnInit {
         );
         this.dataSource._updateChangeSubscription();
         this.isLoadingResults = false; 
-      });
+        // this.getUsers()
+      })
+    } else {
+      this.isLoadingResults = false; 
     }
   }
 

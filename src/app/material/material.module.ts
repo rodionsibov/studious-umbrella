@@ -10,6 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -21,7 +22,8 @@ const MaterialComponents = [
   MatPaginatorModule,
   MatSortModule,
   MatTooltipModule,
-  MatDividerModule
+  MatDividerModule,
+  MatProgressBarModule
 ];
 
 @NgModule({

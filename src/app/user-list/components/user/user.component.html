@@ -1,15 +1,14 @@
+<h1 mat-dialog-title>Edit User</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <fieldset class="d-flex gap-2 overflow-auto">
-    <mat-form-field appearance="fill">
-      <mat-label>Input</mat-label>
-      <input matInput formControlName="input" />
-    </mat-form-field>
-  </fieldset>
+  <div mat-dialog-content>
+    <fieldset class="d-flex gap-2 overflow-auto">
+      <mat-form-field appearance="fill" *ngFor="let field of columns">
+        <mat-label>{{ field.header }}</mat-label>
+        <input matInput [formControlName]="field.columnDef" />
+      </mat-form-field>
+    </fieldset>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Save</button>
+  </div>
 </form>
-
-<h1 mat-dialog-title>Dialog with elements</h1>
-<div mat-dialog-content>This dialog showcases the title, close, content and actions elements.</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-</div>
-
