@@ -34,6 +34,11 @@ export class TableComponent implements OnInit {
 
   columns = [
     {
+      columnDef: 'id',
+      header: 'Id',
+      cell: (element: User) => `${element.id}`,
+    },
+    {
       columnDef: 'name',
       header: 'Name',
       cell: (element: User) => `${element.name}`,
@@ -90,7 +95,7 @@ export class TableComponent implements OnInit {
     },
   ];
 
-  displayedColumns = this.columns.map((c) => c.columnDef);
+  displayedColumns: string[] = this.columns.map((c) => c.columnDef);
 
   constructor(private store: Store, private userListService: UserListService) {}
 
@@ -113,16 +118,10 @@ export class TableComponent implements OnInit {
     if (confirm('Are you sure, you want to remove this user?')) {
       this.userListService.removeUser(id).subscribe(() => {
         console.log('delete from backend');
-
-        // console.log(this.dataSource);
-        // this.dataSource._data._value = this.dataSource._data._value.filter(
-        //   (user: any) => user.id !== id
-        // );
-        this.dataSource = this.dataSource.filter(
-          (user: User) => user.id !== id
+        this.dataSource._data._value = this.dataSource._data._value.filter(
+          (user: any) => user.id !== id
         );
-        console.log(this.dataSource);
-        // this.getUsers()
+        this.dataSource._updateChangeSubscription();
         this.isLoadingResults = false;
       });
     }

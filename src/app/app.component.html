@@ -7,9 +7,15 @@
     Users <b>&</b> Posts
   </div>
   <app-table></app-table>
-  <footer class="my-4 text-center">
-    <a href="https://github.com/rodionsibov/studious-umbrella" class="text-light" [matTooltip]="'Viewing existing code on GitHub. Users & Posts App. Angular. NgRx Reactive State. Angular Material'"
+  <footer class="my-5 text-center">
+    <a
+      href="https://github.com/rodionsibov/studious-umbrella"
+      class="text-light"
+      [matTooltip]="
+        'Viewing existing code on GitHub. Users & Posts App. Angular. NgRx Reactive State. Angular Material'
+      "
       ><i class="fab fa-github fa-2x"></i
     ></a>
+    <p class="mt-1 small text-muted">{{ year }}</p>
   </footer>
 </div>
