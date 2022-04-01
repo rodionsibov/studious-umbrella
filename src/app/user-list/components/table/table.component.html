@@ -10,12 +10,11 @@
       />
     </mat-form-field>
   </div>
-  <div class="overflow-auto" style="height: 400px;">
+  <div class="overflow-auto mat-elevation-z8" style="height: 400px;">
     <table
       multiTemplateDataRows
       mat-table
       [dataSource]="dataSource"
-      class="mat-elevation-z8"
     >
       <ng-container
         *ngFor="let column of columns"

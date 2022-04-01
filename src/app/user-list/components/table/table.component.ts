@@ -10,6 +10,8 @@ import {
 } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '../../types/user';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-table',
@@ -97,7 +99,7 @@ export class TableComponent implements OnInit {
 
   displayedColumns: string[] = this.columns.map((c) => c.columnDef);
 
-  constructor(private store: Store, private userListService: UserListService) {}
+  constructor(private store: Store, private userListService: UserListService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getUsers();
@@ -115,6 +117,8 @@ export class TableComponent implements OnInit {
   removeUser(id: any) {
     this.isLoadingResults = true;
     console.log('removeUser', id);
+    // this.dialog.open(UserComponent);
+
     if (confirm('Are you sure, you want to remove this user?')) {
       this.userListService.removeUser(id).subscribe(() => {
         console.log('delete from backend');
@@ -122,7 +126,7 @@ export class TableComponent implements OnInit {
           (user: any) => user.id !== id
         );
         this.dataSource._updateChangeSubscription();
-        this.isLoadingResults = false;
+        this.isLoadingResults = false; 
       });
     }
   }
