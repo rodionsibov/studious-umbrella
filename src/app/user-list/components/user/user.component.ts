@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserListService } from '../../services/user-list.service';
 import { User } from '../../types/user';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+
+import { updateUser } from '../../store/actions';
 
 @Component({
   selector: 'app-user',
@@ -15,6 +18,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private store: Store,
     private userListService: UserListService,
     @Inject(MAT_DIALOG_DATA) data: { user: User }
   ) {
@@ -48,5 +52,6 @@ export class UserComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Submit', this.form.value);
+    this.store.dispatch(updateUser(this.form.value));
   }
 }

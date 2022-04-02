@@ -1,5 +1,7 @@
 export enum ActionTypes {
-  POSTS = '[UserList] Posts',
-  POSTS_SUCCESS = '[UserList] Posts success',
-  POSTS_FAILURE = '[UserList] Posts failure',
+  POST = '[UserList] Post',
+  POST_SUCCESS = '[UserList] Post success',
+  POST_FAILURE = '[UserList] Post failure',
+  USER = '[UserList] User',
+
 }
