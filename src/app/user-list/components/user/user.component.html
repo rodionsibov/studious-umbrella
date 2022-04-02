@@ -1,10 +1,26 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h1 mat-dialog-title>Edit User</h1>
+  <h1 mat-dialog-title class="text-center">Update user {{ user.name }}</h1>
   <div mat-dialog-content>
     <fieldset class="d-flex flex-wrap justify-content-center gap-2">
-      <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Id</mat-label>
         <input matInput formControlName="id" />
+      </mat-form-field> -->
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Website</mat-label>
+        <input matInput formControlName="website" />
       </mat-form-field>
       <mat-form-field appearance="fill" formGroupName="address">
         <mat-label>Suite</mat-label>
@@ -34,32 +50,16 @@
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" />
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Phone</mat-label>
-        <input matInput formControlName="phone" />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput formControlName="username" />
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Website</mat-label>
-        <input matInput formControlName="website" />
-      </mat-form-field>
     </fieldset>
   </div>
   <div mat-dialog-actions>
     <button
       mat-button
       mat-dialog-close
-      [disabled]="!this.form.value"
+      [disabled]="!this.form.valid"
       type="submit"
     >
-      Save
+      Update
     </button>
   </div>
 </form>

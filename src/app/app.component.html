@@ -1,3 +1,7 @@
+<!-- <div class="container pt-5" style="height: 100vh">
+  <router-outlet></router-outlet>
+</div> -->
+
 <div class="container text-light pb-5">
   <div
     class="display-6 mt-5 text-center"
@@ -9,7 +13,7 @@
   <app-table></app-table>
   <footer class="my-5 text-center">
     <a
-      href="https://github.com/rodionsibov/studious-umbrella"
+      [routerLink]="['https://github.com/rodionsibov/studious-umbrella']"
       class="text-light"
       [matTooltip]="
         'Viewing existing code on GitHub. Users & Posts App. Angular. NgRx Reactive State. Angular Material'

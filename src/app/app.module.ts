@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { UserListModule } from './user-list/user-list.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot({}, {}),
     HttpClientModule,
     UserListModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

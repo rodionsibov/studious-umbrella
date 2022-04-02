@@ -6,16 +6,25 @@ import { TableComponent } from './components/table/table.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListService } from './services/user-list.service';
 import { PostsComponent } from './components/posts/posts.component';
+import { RouterModule, Routes } from '@angular/router';
 
-const UserListComponents = [
-  UserComponent,
-  TableComponent,
-  PostsComponent,
+const UserListComponents = [UserComponent, TableComponent, PostsComponent];
+
+const routes: Routes = [
+  {
+    path: 'user',
+    component: PostsComponent,
+  },
 ];
 
 @NgModule({
   declarations: [UserListComponents],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+  ],
   exports: [UserListComponents, MaterialModule],
   providers: [UserListService],
 })
