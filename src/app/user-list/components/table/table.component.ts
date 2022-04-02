@@ -100,7 +100,7 @@ export class TableComponent implements OnInit {
 
   constructor(
     private store: Store,
-    private userListService: UserListService,
+    public userListService: UserListService,
     public dialog: MatDialog
   ) {}
 

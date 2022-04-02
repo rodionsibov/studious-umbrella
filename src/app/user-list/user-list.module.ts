@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './components/user/user.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../shared/modules/material/material.module';
 import { TableComponent } from './components/table/table.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserListService } from './services/user-list.service';

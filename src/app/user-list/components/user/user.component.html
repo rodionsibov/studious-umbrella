@@ -1,7 +1,7 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h1 mat-dialog-title>Edit User</h1>
   <div mat-dialog-content>
-    <fieldset class="d-flex flex-wrap gap-2 overflow-auto">
+    <fieldset class="d-flex flex-wrap justify-content-center gap-2">
       <mat-form-field appearance="fill">
         <mat-label>Id</mat-label>
         <input matInput formControlName="id" />
@@ -53,6 +53,13 @@
     </fieldset>
   </div>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close type="submit">Save</button>
+    <button
+      mat-button
+      mat-dialog-close
+      [disabled]="!this.form.value"
+      type="submit"
+    >
+      Save
+    </button>
   </div>
 </form>
