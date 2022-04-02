@@ -1,4 +1,4 @@
-export interface User {
+export interface UserRequest {
   id: number;
   address: Address;
   company: Company;

@@ -9,7 +9,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { MatTableDataSource } from '@angular/material/table';
-import { User } from '../../types/user';
+import { UserRequest } from '../../types/user-request';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -30,69 +30,69 @@ import { MatDialog } from '@angular/material/dialog';
 export class TableComponent implements OnInit {
   dataSource: any = [];
   isLoadingResults: boolean = false;
-  expandedElement: User | null | undefined;
+  expandedElement: UserRequest | null | undefined;
   posts: any = [];
 
   columns = [
     {
       columnDef: 'id',
       header: 'Id',
-      cell: (element: User) => `${element.id}`,
+      cell: (element: UserRequest) => `${element.id}`,
     },
     {
       columnDef: 'name',
       header: 'Name',
-      cell: (element: User) => `${element.name}`,
+      cell: (element: UserRequest) => `${element.name}`,
     },
     {
       columnDef: 'phone',
       header: 'Phone',
-      cell: (element: User) => `${element.phone}`,
+      cell: (element: UserRequest) => `${element.phone}`,
     },
     {
       columnDef: 'username',
       header: 'Username',
-      cell: (element: User) => `${element.username}`,
+      cell: (element: UserRequest) => `${element.username}`,
     },
     {
       columnDef: 'email',
       header: 'Email',
-      cell: (element: User) => `${element.email}`,
+      cell: (element: UserRequest) => `${element.email}`,
     },
     {
       columnDef: 'website',
       header: 'Website',
-      cell: (element: User) => `${element.website}`,
+      cell: (element: UserRequest) => `${element.website}`,
     },
     {
       columnDef: 'suite',
       header: 'Suite',
-      cell: (element: User) => `${element.address.suite}`,
+      cell: (element: UserRequest) => `${element.address.suite}`,
     },
     {
       columnDef: 'city',
       header: 'City',
-      cell: (element: User) => `${element.address.city}`,
+      cell: (element: UserRequest) => `${element.address.city}`,
     },
     {
       columnDef: 'street',
       header: 'Street',
-      cell: (element: User) => `${element.address.street}`,
+      cell: (element: UserRequest) => `${element.address.street}`,
     },
     {
       columnDef: 'zipcode',
       header: 'Zipcode',
-      cell: (element: User) => `${element.address.zipcode}`,
+      cell: (element: UserRequest) => `${element.address.zipcode}`,
     },
     {
       columnDef: 'companyName',
       header: 'Company Name',
-      cell: (element: User) => `${element.company.name}`,
+      cell: (element: UserRequest) => `${element.company.name}`,
     },
     {
       columnDef: 'catchPhrase',
       header: 'Company Catchphrase',
-      cell: (element: User) => `${element.company.catchPhrase}`,
+      cell: (element: UserRequest) => `${element.company.catchPhrase}`,
     },
   ];
 
@@ -110,7 +110,7 @@ export class TableComponent implements OnInit {
 
   getUsers() {
     this.isLoadingResults = true;
-    this.userListService.getUsers().subscribe((users: User[]) => {
+    this.userListService.getUsers().subscribe((users: UserRequest[]) => {
       this.dataSource = new MatTableDataSource(users);
       console.log('UsersListService -> Users:', users);
       this.isLoadingResults = false;

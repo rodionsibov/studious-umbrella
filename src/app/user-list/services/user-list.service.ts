@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Post } from '../types/post';
-import { User } from '../types/user';
+import { PostRequest } from '../types/post-request';
+import { UserRequest } from '../types/user-request';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +11,11 @@ import { User } from '../types/user';
 export class UserListService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
+  getUsers(): Observable<UserRequest[]> {
     const url = `${environment.apiUrl}/users`;
-    return this.http.get<User[]>(url).pipe(
+    return this.http.get<UserRequest[]>(url).pipe(
       delay(1000),
-      map((response: User[]) => {
+      map((response: UserRequest[]) => {
         return response;
       })
     );
@@ -30,11 +30,11 @@ export class UserListService {
     return this.http.post(`${environment.apiUrl}/users`, user);
   }
 
-  getPosts(userId: number): Observable<Post> {
+  getPosts(userId: number): Observable<PostRequest> {
     const url = `${environment.apiUrl}/posts?userId=${userId}`;
-    return this.http.get<Post>(url).pipe(
+    return this.http.get<PostRequest>(url).pipe(
       // delay(1000),
-      map((response: Post) => {
+      map((response: PostRequest) => {
         return response;
       })
     );

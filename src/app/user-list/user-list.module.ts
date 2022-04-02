@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserListService } from './services/user-list.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { RouterModule, Routes } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
 
 const UserListComponents = [UserComponent, TableComponent, PostsComponent];
 
@@ -24,6 +26,7 @@ const routes: Routes = [
     MaterialModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    StoreModule.forFeature('user-list', reducers)
   ],
   exports: [UserListComponents, MaterialModule],
   providers: [UserListService],
