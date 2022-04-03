@@ -30,7 +30,7 @@ export class UserListService {
   updateUser(data: UserRequest): Observable<CurrentUser> {
     const url = `${environment.apiUrl}/users/${data.id}`;
     return this.http
-      .post<UserListResponse>(url, data)
+      .put<UserListResponse>(url, data)
       .pipe(map((response: UserListResponse) => response.user));
   }
 

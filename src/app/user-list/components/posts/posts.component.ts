@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { deleteUser, getPosts } from '../../store/actions';
-import { isSubmittingSelector, postsSelector } from '../../store/selectors';
+import { postsSelector } from '../../store/selectors';
 import { PostRequest } from '../../types/post-request';
 import { UserRequest } from '../../types/user-request';
 import { EditUserComponent } from '../edit-user/edit-user.component';
@@ -14,18 +13,15 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  // @Input() posts: PostRequest[];
   @Input() user!: UserRequest;
-  @Output() onRemoveUser = new EventEmitter<number>();
 
-  posts: PostRequest[];
+  posts: PostRequest[] = [];
   posts$ = this.store.pipe(select(postsSelector));
 
-  constructor(public dialog: MatDialog, private store: Store) {
-    this.posts = [];
-  }
+  constructor(public dialog: MatDialog, private store: Store) {}
+
   ngOnInit(): void {
-    this.store.dispatch(getPosts({id: this.user.id}));
+    this.store.dispatch(getPosts({ id: this.user.id }));
     this.posts$.subscribe((res) => {
       this.posts = res;
     });

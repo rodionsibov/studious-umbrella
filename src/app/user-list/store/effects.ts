@@ -43,7 +43,7 @@ export class UserListEffects {
       ofType(updateUser),
       switchMap((action) => {
         return this.userListService.updateUser(action.user).pipe(
-          map((users) => {
+          map((user) => {
             return updateUserSuccess(action);
           }),
           catchError(() => {
@@ -60,7 +60,7 @@ export class UserListEffects {
       switchMap((action) => {
         return this.userListService.deleteUser(action.id).pipe(
           map(() => {
-            return deleteUserSuccess();
+            return deleteUserSuccess({ id: action.id });
           }),
           catchError(() => {
             return of();
@@ -76,7 +76,7 @@ export class UserListEffects {
       switchMap((action) => {
         return this.userListService.getPosts(action.id).pipe(
           map((posts) => {
-            return getPostsSuccess({posts});
+            return getPostsSuccess({ posts });
           }),
           catchError(() => {
             return of();
@@ -84,5 +84,5 @@ export class UserListEffects {
         );
       })
     );
-  });  
+  });
 }

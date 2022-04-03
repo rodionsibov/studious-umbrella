@@ -4,11 +4,6 @@
   </h1>
   <div mat-dialog-content>
     <fieldset class="d-flex flex-wrap justify-content-center gap-2">
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Id</mat-label>
-        <input matInput formControlName="id" />
-      </mat-form-field> -->
-
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name" />
@@ -67,8 +62,6 @@
     <button
       mat-button
       mat-dialog-close
-      [disabled]="!this.form.valid"
-      type="submit"
     >
       Cancel
     </button>

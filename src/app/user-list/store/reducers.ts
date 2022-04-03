@@ -41,9 +41,6 @@ const userListReducer = createReducer(
     (state, { user }): UserListState => ({
       ...state,
       isSubmitting: true,
-      users: state.users.map((item) => {
-        return user.id === item.id ? user : item;
-      }),
     })
   ),
   on(
@@ -61,30 +58,26 @@ const userListReducer = createReducer(
     getPosts,
     (state, action): UserListState => ({
       ...state,
-      isSubmitting: true,
     })
   ),
   on(
     getPostsSuccess,
     (state, { posts }): UserListState => ({
       ...state,
-      isSubmitting: false,
       posts,
     })
   ),
   on(
     deleteUser,
     (state, { id }): UserListState => ({
-      ...state,
-      isSubmitting: true,
-      users: state.users.filter((user) => user.id !== id),
+      ...state
     })
   ),
   on(
     deleteUserSuccess,
-    (state): UserListState => ({
+    (state, { id }): UserListState => ({
       ...state,
-      isSubmitting: false,
+      users: state.users.filter((user) => user.id !== id)
     })
   )
 );

@@ -2,30 +2,18 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserRequest } from '../../types/user-request';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
-import { Observable } from 'rxjs';
-import {
-  currentUserSelector,
-  isSubmittingSelector,
-  postsSelector,
-  usersSelector,
-} from '../../store/selectors';
-import { getPosts, getUsers, updateUser } from '../../store/actions';
+import { updateUser } from '../../store/actions';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnInit {
   form!: FormGroup;
   user!: UserRequest;
-
-  isSubmitting$!: Observable<boolean>;
-  users$!: Observable<UserRequest[]>;
-  posts$!: any;
-  currentUser$!: any;
 
   constructor(
     private fb: FormBuilder,
@@ -37,16 +25,6 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.initializeValues();
-  }
-
-  initializeValues(): void {
-    this.store.dispatch(getUsers());
-    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
-    this.users$ = this.store.pipe(select(usersSelector));
-    this.posts$ = this.store.pipe(select(postsSelector));
-    this.currentUser$ = this.store.pipe(select(currentUserSelector));
-    console.log(this.users$, this.posts$.value);
   }
 
   initializeForm() {
@@ -71,7 +49,6 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     this.store.dispatch(updateUser({ user: this.form.value }));
   }
 }
