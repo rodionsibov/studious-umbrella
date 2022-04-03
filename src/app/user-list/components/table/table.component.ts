@@ -11,6 +11,8 @@ import {
 import { MatTableDataSource } from '@angular/material/table';
 import { UserRequest } from '../../types/user-request';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { getPosts, getUsers } from '../../store/actions';
 
 @Component({
   selector: 'app-table',

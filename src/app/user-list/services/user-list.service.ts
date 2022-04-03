@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { delay, map, Observable } from 'rxjs';
+import { CurrentUser } from 'src/app/shared/types/current-user';
 import { environment } from 'src/environments/environment';
 import { PostRequest } from '../types/post-request';
+import { UserListResponse } from '../types/user-list-response';
 import { UserRequest } from '../types/user-request';
 
 @Injectable({
@@ -25,9 +27,11 @@ export class UserListService {
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
   }
 
-  addUser() {
-    const user = {};
-    return this.http.post(`${environment.apiUrl}/users`, user);
+  updateUser(data: UserRequest): Observable<CurrentUser> {
+    const url = `${environment.apiUrl}/users/${data.id}`;
+    return this.http
+      .post<UserListResponse>(url, data)
+      .pipe(map((response: UserListResponse) => response.user));
   }
 
   getPosts(userId: number): Observable<PostRequest> {
