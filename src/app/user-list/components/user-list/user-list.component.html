@@ -10,7 +10,7 @@
       />
     </mat-form-field>
   </div>
-  <div *ngIf="dataSource" class="overflow-auto" style="height: 400px">
+  <div *ngIf="dataSource" class="overflow-auto">
     <table multiTemplateDataRows mat-table [dataSource]="dataSource">
       <ng-container
         *ngFor="let column of columns"
@@ -22,7 +22,7 @@
           </div>
         </th>
         <td mat-cell *matCellDef="let row">
-          <div class="p-3 text-nowrap">{{ column.cell(row) }}</div>
+          <div class="p-3 text-nowrap" style="cursor: pointer;">{{ column.cell(row) }}</div>
         </td>
       </ng-container>
 
