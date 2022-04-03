@@ -11,8 +11,7 @@ import {
 import { MatTableDataSource } from '@angular/material/table';
 import { UserRequest } from '../../types/user-request';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { getPosts, getUsers } from '../../store/actions';
+import { getUsers } from '../../store/actions';
 import { isSubmittingSelector, usersSelector } from '../../store/selectors';
 
 @Component({
@@ -107,8 +106,7 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private store: Store,
-    public userListService: UserListService,
-    public dialog: MatDialog
+    public userListService: UserListService
   ) {}
 
   ngOnInit(): void {
