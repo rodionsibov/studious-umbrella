@@ -1,6 +1,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <h1 mat-dialog-title class="text-center">
-    Update user {{ isSubmitting$ | async }}
+    Update user 
   </h1>
   <div mat-dialog-content>
     <fieldset class="d-flex flex-wrap justify-content-center gap-2">
@@ -63,6 +63,14 @@
       type="submit"
     >
       Update
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      [disabled]="!this.form.valid"
+      type="submit"
+    >
+      Cancel
     </button>
   </div>
 </form>

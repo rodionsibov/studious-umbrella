@@ -37,15 +37,14 @@
           [attr.colspan]="displayedColumns.length"
         >
           <div
+          *ngIf="expandedElement != null && expandedElement.id === element.id"
             class="example-element-detail row"
             [@detailExpand]="
               element == expandedElement ? 'expanded' : 'collapsed'
             "
           >
             <app-posts
-              [posts]="posts"
               [user]="element"
-              (onRemoveUser)="removeUser($event)"
             ></app-posts>
           </div>
         </td>
@@ -58,7 +57,6 @@
         class="example-element-row"
         [class.example-expanded-row]="expandedElement === element"
         (click)="expandedElement = expandedElement === element ? null : element"
-        (click)="element == expandedElement ? getPosts(element.id) : null"
       ></tr>
       <tr
         mat-row
@@ -74,7 +72,7 @@
     </table>
   </div>
 
-  <div class="spinner" *ngIf="isLoadingResults">
+  <div class="spinner" *ngIf="isSubmitting$ | async">
     <mat-spinner></mat-spinner>
   </div>
 </div>

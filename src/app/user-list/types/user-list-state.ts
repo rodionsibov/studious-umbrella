@@ -4,8 +4,8 @@ import { UserRequest } from "./user-request"
 
 export interface UserListState {
    isSubmitting: boolean
-   currentUser: CurrentUser | null
-   users: UserRequest[] | null
-   posts: PostRequest[] | null
+   currentUser: UserRequest
+   users: UserRequest[]
+   posts: PostRequest[]
   }
   

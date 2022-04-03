@@ -23,7 +23,7 @@ export class UserListService {
     );
   }
 
-  removeUser(id: any) {
+  deleteUser(id: number) {
     return this.http.delete(`${environment.apiUrl}/users/${id}`);
   }
 
@@ -34,11 +34,11 @@ export class UserListService {
       .pipe(map((response: UserListResponse) => response.user));
   }
 
-  getPosts(userId: number): Observable<PostRequest> {
+  getPosts(userId: number): Observable<PostRequest[]> {
     const url = `${environment.apiUrl}/posts?userId=${userId}`;
-    return this.http.get<PostRequest>(url).pipe(
+    return this.http.get<PostRequest[]>(url).pipe(
       // delay(1000),
-      map((response: PostRequest) => {
+      map((response: PostRequest[]) => {
         return response;
       })
     );

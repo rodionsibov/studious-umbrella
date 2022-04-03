@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './components/user/user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MaterialModule } from '../shared/modules/material/material.module';
 import { TableComponent } from './components/table/table.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -10,14 +10,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
-import { UsersEffects } from './store/effects';
+import { UserListEffects as UserListEffects } from './store/effects';
 
-const UserListComponents = [UserComponent, TableComponent, PostsComponent];
+const UserListComponents = [EditUserComponent, TableComponent, PostsComponent];
 
 const routes: Routes = [
   {
-    path: 'user',
-    component: PostsComponent,
+    path: 'edit-user',
+    component: EditUserComponent,
   },
 ];
 
@@ -29,7 +29,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('user-list', reducers),
-    EffectsModule.forFeature([UsersEffects]),
+    EffectsModule.forFeature([UserListEffects]),
   ],
   exports: [UserListComponents, MaterialModule],
   providers: [UserListService],

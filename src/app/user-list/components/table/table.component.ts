@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { UserListService } from '../../services/user-list.service';
 import {
   animate,
@@ -13,6 +13,7 @@ import { UserRequest } from '../../types/user-request';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { getPosts, getUsers } from '../../store/actions';
+import { isSubmittingSelector, usersSelector } from '../../store/selectors';
 
 @Component({
   selector: 'app-table',
@@ -30,10 +31,13 @@ import { getPosts, getUsers } from '../../store/actions';
   ],
 })
 export class TableComponent implements OnInit {
-  dataSource: any = [];
-  isLoadingResults: boolean = false;
-  expandedElement: UserRequest | null | undefined;
   posts: any = [];
+
+  users$ = this.store.pipe(select(usersSelector));
+  isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+
+  dataSource: any = [];
+  expandedElement: UserRequest | null | undefined;
 
   columns = [
     {
@@ -107,42 +111,9 @@ export class TableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUsers();
-  }
-
-  getUsers() {
-    this.isLoadingResults = true;
-    this.userListService.getUsers().subscribe((users: UserRequest[]) => {
-      this.dataSource = new MatTableDataSource(users);
-      console.log('UsersListService -> Users:', users);
-      this.isLoadingResults = false;
-    });
-  }
-
-  removeUser(id: any) {
-    this.isLoadingResults = true;
-    console.log('removeUser', id);
-
-    if (confirm('Are you sure you want to remove this user?')) {
-      this.userListService.removeUser(id).subscribe(() => {
-        console.log('delete from backend');
-        this.dataSource._data._value = this.dataSource._data._value.filter(
-          (user: any) => user.id !== id
-        );
-        this.dataSource._updateChangeSubscription();
-        this.isLoadingResults = false;
-      });
-    } else {
-      this.isLoadingResults = false;
-    }
-  }
-
-  getPosts(userId: number): void {
-    this.isLoadingResults = true;
-    this.userListService.getPosts(userId).subscribe((posts: any) => {
-      this.posts = posts;
-      console.log('UsersListService -> Posts:', posts);
-      this.isLoadingResults = false;
+    this.store.dispatch(getUsers());
+    this.users$.subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res);
     });
   }
 

@@ -3,7 +3,10 @@ import { PostRequest } from '../types/post-request';
 import { UserRequest } from '../types/user-request';
 import { ActionTypes } from './action-types';
 
-export const getPosts = createAction(ActionTypes.GET_POSTS);
+export const getPosts = createAction(
+  ActionTypes.GET_POSTS,
+  props<{ id: number }>()
+);
 
 export const getPostsSuccess = createAction(
   ActionTypes.GET_POSTS_SUCCESS,
@@ -22,7 +25,14 @@ export const updateUser = createAction(
   props<{ user: UserRequest }>()
 );
 
+export const updateUserSuccess = createAction(
+  ActionTypes.UPDATE_USER_SUCCESS,
+  props<{ user: UserRequest }>()
+);
+
 export const deleteUser = createAction(
   ActionTypes.DELETE_USER_ACTION,
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
+
+export const deleteUserSuccess = createAction(ActionTypes.DELETE_USER_SUCCESS);

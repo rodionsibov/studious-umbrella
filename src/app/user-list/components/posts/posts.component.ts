@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { isSubmittingSelector } from '../../store/selectors';
+import { deleteUser, getPosts } from '../../store/actions';
+import { isSubmittingSelector, postsSelector } from '../../store/selectors';
 import { PostRequest } from '../../types/post-request';
 import { UserRequest } from '../../types/user-request';
-import { UserComponent } from '../user/user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   selector: 'app-posts',
@@ -13,26 +14,32 @@ import { UserComponent } from '../user/user.component';
   styleUrls: ['./posts.component.css'],
 })
 export class PostsComponent implements OnInit {
-  @Input() posts: PostRequest[];
+  // @Input() posts: PostRequest[];
   @Input() user!: UserRequest;
   @Output() onRemoveUser = new EventEmitter<number>();
-  
-  isSubmitting$!: Observable<boolean>;
+
+  posts: PostRequest[];
+  posts$ = this.store.pipe(select(postsSelector));
 
   constructor(public dialog: MatDialog, private store: Store) {
     this.posts = [];
   }
   ngOnInit(): void {
-    // this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.store.dispatch(getPosts({id: this.user.id}));
+    this.posts$.subscribe((res) => {
+      this.posts = res;
+    });
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(UserComponent, {
+    const dialogRef = this.dialog.open(EditUserComponent, {
       data: { user: this.user },
     });
   }
 
   removeUser(userId: number) {
-    this.onRemoveUser.emit(userId);
+    if (confirm('Are you sure you want to remove this user?')) {
+      this.store.dispatch(deleteUser({ id: userId }));
+    }
   }
 }
