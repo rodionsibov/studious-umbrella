@@ -11,13 +11,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './store/reducers';
 import { UserListEffects as UserListEffects } from './store/effects';
+import { DialogComponent } from '../shared/modules/dialog/components/dialog/dialog.component';
 
 const UserListComponents = [EditUserComponent, UserListComponent, PostsComponent];
 
 const routes: Routes = [
   {
-    path: 'edit-user',
-    component: EditUserComponent,
+    path: 'dialog',
+    component: DialogComponent,
   },
 ];
 

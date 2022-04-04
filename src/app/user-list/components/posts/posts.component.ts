@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
+import { DialogComponent } from 'src/app/shared/modules/dialog/components/dialog/dialog.component';
 import { deleteUser, getPosts } from '../../store/actions';
 import { postsSelector } from '../../store/selectors';
 import { PostRequest } from '../../types/post-request';
@@ -34,8 +35,12 @@ export class PostsComponent implements OnInit {
   }
 
   removeUser(userId: number) {
-    if (confirm('Are you sure you want to remove this user?')) {
-      this.store.dispatch(deleteUser({ id: userId }));
-    }
+    // if (confirm('Are you sure you want to remove this user?')) {
+    //   this.store.dispatch(deleteUser({ id: userId }));
+    // }
+
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { user: this.user },
+    });
   }
 }
